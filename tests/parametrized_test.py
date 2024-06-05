@@ -11,12 +11,14 @@ pytestmark = pytest.mark.dependency  # NÃO REMOVA ESSA LINHA
     [
         ("8", 8),
         ("9", 9),
-        ("a", AssertionError),
-        ("b", AssertionError),
-        ("c", AssertionError),
-        ("e", AssertionError),
-        ("f", AssertionError),
+        ("a", 10),
+        ("b", 11),
+        ("c", 12),
+        ("d", 13),
+        ("e", 14),
+        ("f", 15),
     ],
 )
-def test_convert(hex_to_convert, expected):
-    hexadecimal_to_decimal(hex_to_convert) == expected
+def test_converter(hex_to_convert, expected):
+    if not hexadecimal_to_decimal(hex_to_convert) == expected:
+        raise AssertionError
