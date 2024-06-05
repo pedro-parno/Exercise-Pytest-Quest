@@ -19,3 +19,11 @@ def test_monkeypatch(monkeypatch):
     output = main()
 
     assert output == 10
+
+
+def test_capsys(capsys):
+    print_hexadecimal_to_decimal("a")
+    capture = capsys.readouterr()
+
+    assert capture.err == ""
+    assert capture.out == "10\n"
