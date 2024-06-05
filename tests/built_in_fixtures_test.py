@@ -1,5 +1,4 @@
 import pytest
-
 from src.hex_converter import (  # noqa: F401
     main,
     print_hexadecimal_to_decimal,
@@ -23,7 +22,17 @@ def test_monkeypatch(monkeypatch):
 
 def test_capsys(capsys):
     print_hexadecimal_to_decimal("a")
+
     capture = capsys.readouterr()
 
     assert capture.err == ""
     assert capture.out == "10\n"
+
+
+def test_tmp_path(tmp_path):
+    output_path = tmp_path / "output.txt"
+
+    write_hexadecimal_to_decimal("a", output_path)
+
+    assert output_path.is_file()
+    assert output_path.read_text() == "10"
